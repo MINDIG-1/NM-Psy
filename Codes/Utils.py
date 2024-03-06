@@ -26,6 +26,38 @@ mpl.rcParams['axes.labelsize'] = 20
 mpl.rcParams['axes.titlesize'] = 20
 
 
+feature = "Spec"
+result_root = "/home/ubuntu/NM-Psy/Results"
+
+zs_path_root = "home/ubuntu/NM-Psy/Results/ModelTraining/Zs-Parallel"
+
+zs_folders = [file for file in os.listdir(zs_path_root) if file.startswith("Allch")]
+
+column_names = [f"zs_X{i}" for i in range(1, 125)]
+
+montage = mne.channels.make_standard_montage('GSN-HydroCel-128')
+info = mne.create_info(montage.ch_names[0:124], sfreq=200, ch_types='eeg')
+info.set_montage(montage)
+
+vmin = 0
+vmax = 100
+max_p = float('-inf')
+max_n = float('-inf')
+group_list = [ "HC_te", "ADHD", "ASD", "Anxiety", "Learning"]
+zs_file = "zsAllCh.csv"
+
+f_bands = ['Delta', 'Theta', 'Alpha', 'Beta', 'Gamma']
+colors = {'posChED': '#0A2B6B', 'negChED': '#730128'}
+
+
+nperm = 5000
+perm_test = 'group' #group' # 'group' or 'spatial'
+level = 'spectral' # 'network' or 'region' or 'spectral'
+sig_thresh = 0.05
+plot_name = ["uncorrected", "fdr"]
+
+
+
 
 def zs_IO(zs_df, column_names, group):
     zs_subset = zs_df[zs_df['group']==group][column_names].values
@@ -125,34 +157,3 @@ def find_rank(sorted_arr_pos, true_val_pos):
         row_idx = np.argmax(sorted_arr_pos[:, col_idx] == true_val_pos[col_idx])
         indices.append(row_idx)
     return indices
-
-feature = "Spec"
-result_root = "/home/ubuntu/NM-Psy/Results"
-
-zs_path_root = "home/ubuntu/NM-Psy/Results/ModelTraining/Zs-Parallel"
-
-zs_folders = [file for file in os.listdir(zs_path_root) if file.startswith("Allch")]
-
-column_names = [f"zs_X{i}" for i in range(1, 125)]
-
-montage = mne.channels.make_standard_montage('GSN-HydroCel-128')
-info = mne.create_info(montage.ch_names[0:124], sfreq=200, ch_types='eeg')
-info.set_montage(montage)
-
-vmin = 0
-vmax = 40
-max_p = float('-inf')
-max_n = float('-inf')
-group_list = [ "HC_te", "ADHD", "ASD", "Anxiety", "Learning"]
-zs_file = "zsAllCh.csv"
-
-f_bands = ['Delta', 'Theta', 'Alpha', 'Beta', 'Gamma']
-colors = {'posChED': '#0A2B6B', 'negChED': '#730128'}
-
-
-nperm = 500
-perm_test = 'group' #group' # 'group' or 'spatial'
-level = 'spectral' # 'network' or 'region' or 'spectral'
-sig_thresh = 0.05
-plot_name = ["uncorrected", "fdr"]
-

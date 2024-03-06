@@ -23,7 +23,7 @@ for (fb in f_bands) {
 }
 
 
-num_resamples <- 10
+num_resamples <- 1000
 
 test_data <- data.frame(age = seq(min_age, max_age, by = 0.05) )
 

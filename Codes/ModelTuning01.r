@@ -14,7 +14,7 @@ if (!file.exists(result_path)) dir.create(result_path)
 
 
 dist_list <- c("ZAGA","ZAIG", "BEINF","PE","GT","GG","GB2","GB1","BCPE","BCT","exGAUS","JSU","NET","SEP1","SEP2","SEP3","SEP4","SHASH","SHASHo","ST1","ST2","ST3","ST4","ST5","TF")
-dist_list <- c("SHASH", "GG")
+# dist_list <- c("SHASH", "GG")
 
 npoly_list <- matrix(c(1,1,0,
                     2,1,0,
@@ -30,13 +30,13 @@ npoly_list <- matrix(c(1,1,0,
                     3,3,2),
                     byrow=TRUE,ncol=3,dimnames=list(NULL,c("mu","sigma","nu")))
 
-npoly_list <- matrix(c(1,0,0,
-                   1,1,0),
-                   byrow=TRUE,ncol=3,dimnames=list(NULL,c("mu","sigma","nu")))
+# npoly_list <- matrix(c(1,0,0,
+#                    1,1,0),
+#                    byrow=TRUE,ncol=3,dimnames=list(NULL,c("mu","sigma","nu")))
 
 n_c <- 50
 
-df_all <- data.frame(f_band = character(), iFP = character(), DistFamily = character(),
+df_all <- data.frame(f_band = character(), npoly = character(), DistFamily = character(),
                      AIC_Score = numeric(), BIC_Score = numeric(), mdlDev = numeric(), mu_formula=character(), si_formula= character(), nu_formula=character(), stringsAsFactors = FALSE)
 
 
