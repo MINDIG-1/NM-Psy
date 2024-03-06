@@ -66,7 +66,6 @@ def zs_IO(zs_df, column_names, group):
     return IO_pos, IO_neg
 
 def zs_counts (IO):
-    chPsubj = IO.sum(axis = 1)
     IO = IO[IO.sum(axis=1) != 0]
     if IO.shape[0] != 0:
         l = 100 / IO.shape[0] #subjects
