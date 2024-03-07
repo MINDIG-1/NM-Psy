@@ -8,7 +8,7 @@ library(foreach)
 
 
 #-------------------------------Feature Specific
-feature <- "Spec"  #or "FC"
+feature <- "FC"  #or "FC"  "Spec"
 
 if (feature == "Spec"){
 
@@ -19,8 +19,8 @@ if (feature == "Spec"){
 
 
 } else if (feature == "FC"){
-  df_path <- "/home/ubuntu/MEEG-normative-modeling/NModel_FC/Featuresdf/df_rel_pwr_avgch_allsites_EO.csv"
-  all_ch_path <- "/home/ubuntu/MEEG-normative-modeling/NModel_FC/Featuresdf/df_FC_all.csv"
+  df_path <- "/home/ubuntu/MEEG-normative-modeling/NModel_FC/Featuresdf/df_FC_avg.csv"
+  all_ch_path <- "/home/ubuntu/MEEG-normative-modeling/NModel_FC/AllchAllsites"
   col_names_to_drop <- c("subject_id", "handedness", "scores")
   column_names <- paste0("X", 0:2277)
 
@@ -36,7 +36,7 @@ data_all <- read.csv(df_path)
 data_all <- subset(data_all, age < max_age)
 data_all <- subset(data_all, age > min_age)
 data_HC_all_fb <- subset(data_all, group == "HC")
-data_HC_all_fb <- subset(data_HC_all_fb, select = -c(handedness, scores))
+if (c("handedness", "scores") %in% colnames(data_HC_all_fb))  data_HC_all_fb <- subset(data_HC_all_fb, select = -c(handedness, scores))
 
 f_bands <- c("Delta", "Theta", "Alpha", "Beta", "Gamma")
 

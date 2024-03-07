@@ -3,6 +3,8 @@ nohup.out
 *.cpython
 */Featuresdf/
 */Results/
-
-
+Featuresdf/
+Results/
 *.csv
+*.rds
+*.png

@@ -51,7 +51,7 @@ colors = {'posChED': '#0A2B6B', 'negChED': '#730128'}
 
 
 nperm = 5000
-perm_test = 'group' #group' # 'group' or 'spatial'
+perm_test = 'group' # 'group' or 'spatial'
 level = 'spectral' # 'network' or 'region' or 'spectral'
 sig_thresh = 0.05
 plot_name = ["uncorrected", "fdr"]

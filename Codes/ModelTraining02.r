@@ -20,28 +20,15 @@ dataset_list <- list.files(all_ch_path)
 
 feature <- "Spec"  #or "FC"
 
-if (feature == "FC"){
-
-  df_fb <- read.csv(all_ch_path)
-  df_fb <- df_fb[, -which(names(df_fb) %in% col_names_to_drop)]
-  df_fb <- subset(df_fb, age < max_age)
-  df_fb <- subset(df_fb, age > min_age)
-}
 
 
 
-for (fb in f_bands)
-    {
-    if (feature == "Spec"){
-    df <- read.csv(paste(all_ch_path, dataset_list[grep(match(fb, f_bands), dataset_list)], sep = '/')) 
+for (fb in f_bands){
+
+    df <- read.csv(paste(all_ch_path, dataset_list[grep(fb, dataset_list)], sep = '/')) 
     df <- df[, -which(names(df) %in% col_names_to_drop)]
     df <- subset(df, age < max_age)
     df <- subset(df, age > min_age)
-
-    }else if (feature == "FC"){
-
-    df <- subset(df_fb, f_band == fb)
-    }
 
 
     data_HC <- subset(df, group == "HC")

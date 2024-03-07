@@ -45,7 +45,7 @@ for (fb in f_bands)
 {
     gDev_df_list <- list()
 
-    df = read.csv(paste(all_ch_path, dataset_list[grep(match(fb, f_bands), dataset_list)], sep = '/'))  
+    df <- read.csv(paste(all_ch_path, dataset_list[grep(fb, dataset_list)], sep = '/'))  
     df <- df[, -which(names(df) %in% col_names_to_drop)]
     df <- subset(df, age < max_age)
     df <- subset(df, age > min_age)
