@@ -71,7 +71,7 @@ for (fb in f_bands){
     nu_formula <- as.formula(sorted_bic_site$nu_formula)
     
 
-    cov <- "random(factor(site))"
+    cov <- "random(factor(dataset))"
     aic_r_site <- cov_test(mu_formula,si_formula, nu_formula, DistFam, cov, data_tr, fb)
     sorted_aic_r_site <- aic_r_site[order(aic_r_site$AIC_score),]
     sorted_bic_r_site <- aic_r_site[order(aic_r_site$BIC_score),]
